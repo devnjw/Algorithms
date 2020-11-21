@@ -53,7 +53,7 @@ int swap_int(int num, int p1, int p2){
 }
 
 void check(int num, int len){
-  cout << "Compare " << num << " with " << maxmin << endl;
+  //cout << "Compare " << num << " with " << maxmin << endl;
   if(num > origin)
     if(num < maxmin){
       maxmin = num;
