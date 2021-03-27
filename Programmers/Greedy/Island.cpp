@@ -6,13 +6,9 @@
 using namespace std;
 
 int visited[100];
-int arr[100][100];
 
 int solution(int n, vector<vector<int>> costs) {
     int answer = 0;
-    for(auto it:costs){
-        arr[it[0]][it[1]] = arr[it[1]][it[0]] = it[2];
-    }
     visited[0] = 1;
 
     while(*min_element(visited, visited+n)==0){
