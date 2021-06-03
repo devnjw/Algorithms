@@ -9,7 +9,7 @@ void Print(int arr[], int size){
   cout << endl;
 }
 
-void selection_sort(int * arr, int size){
+void insertion_sort(int * arr, int size){
   for(int i=1; i<size; ++i){
     int index = i;
     for(int j=i-1; j>=0; --j){
@@ -24,7 +24,7 @@ void selection_sort(int * arr, int size){
 int main(){
   int arr[9] = {8, 5, 9, 7, 4, 2, 6, 3, 1};
   Print(arr, 9);
-  selection_sort(arr, 9);
+  insertion_sort(arr, 9);
   Print(arr, 9);
 
   return 0;
