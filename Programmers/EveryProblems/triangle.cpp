@@ -1,3 +1,5 @@
+// 알고보니 단순한 문제였다.
+
 #include <string>
 #include <vector>
 
