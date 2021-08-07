@@ -5,11 +5,16 @@
 #include <string>
 #include <vector>
 
+#include <time.h>
+
 using namespace std;
 
 int arr[10001];
 
 int solution(int n) {
+    clock_t start, end;
+    start = clock();
+
     int answer = 0;
 
     arr[1] = 1;
@@ -25,6 +30,10 @@ int solution(int n) {
         while(arr[r] - arr[l] > n) r--;
         while(arr[r] - arr[l] < n) l--;
     }
+
+    end = clock();
+
+    printf("타이머 : %.2f",((float)(end - start) / CLOCKS_PER_SEC));
 
     return answer;
 }
