@@ -1,6 +1,3 @@
-// 다단계 칫솔 판매 문제
-// 테스트 10,11,12 시간초과 발생
-
 #include <string>
 #include <vector>
 #include <unordered_map>
@@ -21,7 +18,7 @@ vector<int> solution(vector<string> enroll, vector<string> referral, vector<stri
     for(int i=0; i<seller.size(); ++i){
         amount[i] *= 100;
         string next_person = seller[i];
-        while(next_person!="-"){
+        while(next_person!="-" && amount[i]){
             sales[next_person] += amount[i] - amount[i] / 10;
             next_person = refers[next_person];
             amount[i] /= 10;
