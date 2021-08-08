@@ -35,7 +35,7 @@ int palinChecker(string &s, int idx){
 
 int solution(string s)
 {
-    int answer = palinChecker(s, s.size()/2);
+    int answer = max(palinChecker(s, s.size()/2), palinCheckerForEven(s, s.size()/2));
     int r = s.size()/2 + 1;
     int l = s.size()/2 - 1;
     while(l*2+1>answer){
