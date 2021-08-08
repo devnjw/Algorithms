@@ -1,5 +1,6 @@
 // Greedy 그리디
 // 용현이 발상이 좋았다..
+// string insert, erase 활용
 
 #include <string>
 #include <vector>
