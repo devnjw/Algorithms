@@ -29,5 +29,6 @@ string solution(vector<string> table, vector<string> languages, vector<int> pref
             }
         }
     }
+
     return split(table[max_element(arr, arr + 5) - arr])[0];
 }
