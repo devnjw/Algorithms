@@ -8,12 +8,13 @@ int tmp[4];
 int nums[10000];
 
 void MAKE(vector<int> &v, int n, int X){
-    if(n==0)
+    if(n==0){
         nums[X] = 1;
+    }
     for(int i=0; i<n; ++i){
         if(tmp[i]==0){
             tmp[i] = 1;
-            MAKE(v, n-1, X + v[i]);
+            MAKE(v, n-1, X*10 + v[i]);
             tmp[i] = 0;
         }
     }
