@@ -10,7 +10,6 @@ int main(){
 
   int i=1;
   int j=0;
-  int cnt=0;
 
   while(N/i){
     if((N/i)%10>4)
@@ -20,7 +19,7 @@ int main(){
     j += 1;
   }
 
-  cout << N - cnt;
+  cout << N;
 
   return 0;
 }
