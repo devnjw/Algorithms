@@ -1,14 +1,11 @@
 #include <iostream>
-#include <time.h>
 
 using namespace std;
 
 int main() {
-  clock_t start, end;
-  start = clock();
-
-  // ios::sync_with_stdio(false);
-  // cin.tie(NULL);
+  ios::sync_with_stdio(false);
+  cin.tie(NULL);
+  cout.tie(NULL);
 
   int number;
   cin >> number;
@@ -28,10 +25,5 @@ int main() {
   }
 
   cout << cmp - cnt;
-
-  end = clock();
-
-  printf("Timer : %.2f",((float)(end - start) / CLOCKS_PER_SEC));
-
   return 0;
 }
