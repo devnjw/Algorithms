@@ -1,6 +1,6 @@
 #include <vector>
-#include <sstream>
 #include <string>
+#include <sstream>
 
 vector<string> split(string input, char delimiter=' ') {
     vector<string> answer;
