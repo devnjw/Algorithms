@@ -31,20 +31,11 @@ int main(){
   int n;
 
   do {
-
       cin >> n;
       heapPush(n);
 
   } while (getc(stdin) == '\n');
 
-
-  // cin >> M;
-  // int tmp;
-  // while(cin >> tmp){
-  //   heapPush(tmp);
-  // }
-  //
-  
   for(int i=0; i<heapSize; ++i){
     cout << heap[i] << " ";
   }
