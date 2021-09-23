@@ -1,44 +1,48 @@
 #include <iostream>
-#define MAX_SIZE 100000000
 
 using namespace std;
 
-int heap[MAX_SIZE];
-int heapSize = 0;
-
-int heapPush(int value)
-{
-	heap[heapSize] = value;
-
-	int current = heapSize;
-	while (current > 0 && heap[current] < heap[(current - 1) / 2])
-	{
-		int temp = heap[(current - 1) / 2];
-		heap[(current - 1) / 2] = heap[current];
-		heap[current] = temp;
-		current = (current - 1) / 2;
-	}
-
-	heapSize = heapSize + 1;
-
-	return 1;
-}
-
-int M;
+int M, answer;
+int arr[100001];
 
 int main(){
+	cin >> M;
 
-  int n;
+	int tmp;
+	while(true) {
+		cin >> tmp;
+		arr[tmp]++;
+		if(tmp < 0) break;
+		if(cin.eof() == true) {
+		 break;
+		}
+	}
 
-  do {
-      cin >> n;
-      heapPush(n);
+	int l = 0, r = M;
+	while(arr[l]==0)
+		l++;
+	while(arr[r]==0)
+		r--;
 
-  } while (getc(stdin) == '\n');
+	while(l<=r){
+ 		if(l+r>M){
+			answer++;
+			arr[r]--;
+			while(arr[r]==0 && r>=0)
+				r--;
+		}
+		else{
+			answer++;
+			arr[r]--;
+			arr[l]--;
+			while(arr[r]==0 && r>=0)
+				r--;
+			while(arr[l]==0 && l<=M)
+				l++;
+		}
+	}
 
-  for(int i=0; i<heapSize; ++i){
-    cout << heap[i] << " ";
-  }
+	cout << answer;
 
   return 0;
 }
