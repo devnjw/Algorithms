@@ -1,24 +1,21 @@
 #include <iostream>
+#define SIZE 100000
 
 using namespace std;
 
 int M, answer;
-int arr[100001];
+int arr[SIZE+1];
 
 int main(){
 	cin >> M;
 
 	int tmp;
-	while(true) {
-		cin >> tmp;
-		arr[tmp]++;
+	while(cin >> tmp) {
 		if(tmp < 0) break;
-		if(cin.eof() == true) {
-		 break;
-		}
+		arr[tmp]++;
 	}
 
-	int l = 0, r = M;
+	int l = 1, r = M;
 	while(arr[l]==0)
 		l++;
 	while(arr[r]==0)
@@ -28,16 +25,16 @@ int main(){
  		if(l+r>M){
 			answer++;
 			arr[r]--;
-			while(arr[r]==0 && r>=0)
+			while(r>=0 && arr[r]==0)
 				r--;
 		}
 		else{
 			answer++;
 			arr[r]--;
 			arr[l]--;
-			while(arr[r]==0 && r>=0)
+			while(r>=0 && arr[r]<=0)
 				r--;
-			while(arr[l]==0 && l<=M)
+			while(l<=M && arr[l]<=0)
 				l++;
 		}
 	}
