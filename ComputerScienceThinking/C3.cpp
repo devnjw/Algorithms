@@ -36,7 +36,7 @@ struct Node{
 
 struct Node * adj[SIZE];
 
-// distance from Node 0(=N), 1 and 2
+// distances from Node 0(=N), 1 and 2
 int dists[3][SIZE];
 int visited[3][SIZE];
 
@@ -64,10 +64,10 @@ void search_dist(int node){
   q.init();
   q.push(node);
 
-  Node * tmp_node;
   while(!q.empty()){
-    tmp_node = adj[q.front()];
+    Node * tmp_node = adj[q.front()];
     int dist = dists[node][q.front()] + 1;
+
     while(tmp_node != NULL){
       if(visited[node][tmp_node->data]==0){
         visited[node][tmp_node->data] = 1;
@@ -91,11 +91,11 @@ int main(){
     connect(b%N, a%N);
   }
 
-  dists[1][1] = dists[2][2] = dists[0][0] = 0;
-  visited[1][1] = visited[2][2] = visited[0][0] = 1;
-  search_dist(1);
-  search_dist(2);
-  search_dist(0);
+  for(int i=0; i<3; ++i){
+    dists[i][i] = 0;
+    visited[i][i] = 1;
+    search_dist(i);
+  }
 
   int answer = dists[0][0] * r + dists[1][0] * p + dists[2][0] * q;
   for(int i=1; i<N; ++i){
