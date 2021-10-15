@@ -2,6 +2,10 @@
 
 using namespace std;
 
+// Todo: Long Long 으로 바꿔보기
+// 안되면 moduler 나눠서 해보기
+// 그래도 안되면 p, q가 같은 층에 위치한 경우 등 더 고려하기
+
 struct Node{
   int a;
   int c;
