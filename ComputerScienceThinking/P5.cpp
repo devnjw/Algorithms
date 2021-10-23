@@ -8,7 +8,7 @@ int n, k, answer;
 int mn=100000, mx=0;
 vector<int> poles;
 
-int solution(int distance, , int n) {
+int main() {
   cin >> n >> k;
 
   int tmp;
@@ -23,23 +23,21 @@ int solution(int distance, , int n) {
 
   int l = mn, r = mx;
   while(l <= r){
-      int cnt = 0;
+      int cnt = 1;
       int mid = (l+r)/2;
       int min_d = mx;
       int curr = mn;
 
-      for(auto pole : poles){
-        if(pole==mn) continue;
-        
-        if(pole - curr < mid){
+      for(int i=0; i<poles.size(); ++i){
+        if(poles[i]==mn) continue;
+
+        if(poles[i] - curr >= mid){
+            min_d = min(min_d, poles[i] - curr);
+            curr = poles[i];
             cnt++;
         }
-        else{
-            min_d = min(min_d, pole - curr);
-            curr = rock;
-        }
       }
-      if(cnt > n){
+      if(cnt < k){
           r = mid - 1;
       }
       else{
@@ -48,5 +46,7 @@ int solution(int distance, , int n) {
       }
   }
 
-  return answer;
+  cout << answer;
+
+  return 0;
 }
