@@ -4,6 +4,12 @@
 
 using namespace std;
 
+// Binary Search의 4 Step
+// 1. Range 설정
+// 2. Evaluation 방법 설정
+// 3. Range 좁히기
+// 4. 종료조건
+
 int n, k, answer;
 int mn=100000, mx=0;
 vector<int> poles;

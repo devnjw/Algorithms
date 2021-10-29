@@ -2,13 +2,9 @@
 
 using namespace std;
 
-// Todo: Long Long 으로 바꿔보기
-// 안되면 moduler 나눠서 해보기
-// 그래도 안되면 p, q가 같은 층에 위치한 경우 등 더 고려하기
-
 struct Node{
-  int a;
-  int c;
+  long long a;
+  long long c;
   Node * next;
 };
 
@@ -66,8 +62,8 @@ void push_inside(int a, int c){
 }
 
 int main(){
-  int answer = 0;
-  int F, G, a, c, p, q;
+  long long answer = 0;
+  long long F, G, a, c, p, q;
 
   push_back(-2000000000, 0);
 
@@ -102,19 +98,19 @@ int main(){
   }
 
   c = curr->c;
-  answer = ((curr->next->a - p) * c) % 10007;
+  answer = ((curr->next->a - p) * c);
   curr = curr->next;
 
   while(curr->next!=NULL && curr->next->a <= q){
     if(curr->c > c) c = curr->c;
-    answer = (answer + (curr->next->a - curr->a) * c) % 10007;
+    answer = (answer + (curr->next->a - curr->a) * c);
     curr = curr->next;
   }
 
   if(curr->c > c) c = curr->c;
-  answer = (answer + (q - curr->a + 1) * c) % 10007;
+  answer = (answer + (q - curr->a + 1) * c) ;
 
-  cout << answer;
+  cout << answer % 10007;
 
   return 0;
 }
