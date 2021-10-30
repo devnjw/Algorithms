@@ -8,7 +8,7 @@ using namespace std;
 
 stack<int> s;
 int numbers[MAXSIZE];
-int connection[MAXSIZE]={-1};
+int connection[MAXSIZE];
 int maxnum[MAXSIZE];
 int maxnum_desc[MAXSIZE];
 int N;
@@ -18,7 +18,7 @@ int main(){
   for(int i=0; i<N; ++i)
     cin >> numbers[i];
 
-  connection[0] = -1;
+  for(int i=0; i<N; ++i) connection[i] = -1;
   maxnum[0] = 1;
 
   for(int i=1; i<N; ++i){
@@ -45,8 +45,6 @@ int main(){
 
   while(!s.empty()) s.pop();
   for(int i=0; i<N; ++i) connection[i] = -1;
-
-  connection[N-1] = -1;
   maxnum_desc[N-1] = 1;
 
   for(int i=N-2; i>=0; --i){
@@ -73,10 +71,12 @@ int main(){
 
   int answer = 0;
   for(int i=0; i<N; ++i){
+    cout << maxnum[i] << ":" << maxnum_desc[i] << endl;
     if(maxnum[i]+maxnum_desc[i] > answer){
       answer = maxnum[i]+maxnum_desc[i];
     }
   }
+
   cout << answer-1;
 
   return 0;
