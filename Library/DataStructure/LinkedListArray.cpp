@@ -25,7 +25,8 @@ void connect(int curr, int next){
 
 void print_linked_list_arr(){
   Node * tmp_node;
-  for(int i=1; i<=SIZE; ++i){
+  for(int i=1; i<=N; ++i){
+    cout << i << ": ";
     tmp_node = arr[i];
     while(tmp_node != NULL){
       cout << tmp_node->data << " - ";
@@ -33,8 +34,6 @@ void print_linked_list_arr(){
     }
     cout << endl;
   }
-
-  cout << tmp_node->data << endl;
 }
 
 int main(){
