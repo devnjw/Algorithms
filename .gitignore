@@ -7,6 +7,7 @@
 *.d
 
 KaKao/2021Intershi
+DoNotPush/*
 
 # Compiled Object files
 *.slo
@@ -47,3 +48,4 @@ KaKao/2021Intershi
 # End of https://www.toptal.com/developers/gitignore/api/c++
 
 *.DS_Store
+.vscode
