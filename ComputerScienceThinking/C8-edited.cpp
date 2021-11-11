@@ -31,13 +31,18 @@ int main(){
   int answer = 0;
   int last_idx = 0;
   for(int i=0; i<N; ++i){
-    if(min_out <= arr[i].first || arr[i].first==arr[i].second){
+    if(min_out < arr[i].first){
+      answer++;
+      last_idx = i;
+      min_out = arr[i].second;
+    }
+    else if(arr[i].second < min_out)
+      min_out = arr[i].second;
+    if(arr[i].first == arr[i].second){
       answer++;
       last_idx = i;
       min_out = 20000;
     }
-    else if(arr[i].second < min_out)
-      min_out = arr[i].second;
   }
 
   if(last_idx < N-1)
