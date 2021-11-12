@@ -6,10 +6,10 @@
 
 using namespace std;
 
-pair<int, int> arr[SIZE];
+pair<double, double> arr[SIZE];
 
-pair<int, int> get_range(int x, int y, int d){
-  pair<int, int> result;
+pair<double, double> get_range(int x, int y, int d){
+  pair<double, double> result;
   result.first = x - sqrt(d*d - y*y);
   result.second = x + sqrt(d*d - y*y);
   return result;
@@ -31,10 +31,15 @@ int main(){
   int answer = 0;
   int last_idx = 0;
   for(int i=0; i<N; ++i){
-    if(min_out < arr[i].first){
+    if(min_out <= arr[i].first){
       answer++;
       last_idx = i;
-      min_out = arr[i].second;
+      if(min_out == arr[i].first){
+        min_out = 20000;
+        continue;
+      }
+      else
+        min_out = arr[i].second;
     }
     else if(arr[i].second < min_out)
       min_out = arr[i].second;
