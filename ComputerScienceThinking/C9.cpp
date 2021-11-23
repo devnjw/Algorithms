@@ -2,19 +2,37 @@
 
 using namespace std;
 
-int arr[8000][3];
+int scores[8001][2];
+int group[8001];
+
+int find_group(int num){
+  if(group[num] == num)
+    return num;
+  group[num] = find_group(group[num]);
+  return group[num];
+}
+
+bool check_rules(int a, int b){
+  if(scores[a][0] < scores[b][0] && scores[a][1] > scores[b][1])
+    return true;
+  if(scores[a][0] > scores[b][0] && scores[a][1] < scores[b][1])
+    return true;
+  return false;
+}
 
 int main(){
+  int groups = 0;
   int N;
   cin >> N;
-  int groups = N;
-  for(int i=0; i<N; ++i){
-    cin >> arr[i][0] >> arr[i][1];
-    for(int j=0; j<i; ++j){
-      if(arr[i][2]*arr[j][2]==0 && arr[i][0] < arr[j][0] && arr[i][1] > arr[j][1]){
-        groups--;
-      }
-      else if(arr[i][2]*arr[j][2]==0 && arr[i][0] > arr[j][0] && arr[i][1] < arr[j][1]){
+
+  for(int i=1; i<=N; ++i){
+    cin >> scores[i][0] >> scores[i][1];
+    group[i] = i;
+    groups++;
+
+    for(int j=1; j<i; ++j){
+      if(find_group(i) != find_group(j) && check_rules(i, j)){
+        group[find_group(i)] = find_group(j);
         groups--;
       }
     }
