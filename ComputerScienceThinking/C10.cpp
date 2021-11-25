@@ -42,7 +42,7 @@ int main(){
 
   for(int i=0; i<N; ++i){
     if(visited[i]) continue;
-    int a = 0, b = 0;
+    int a = 1, b = 0;
     DFS(i, a, b, 1);
     answer += min(a, b);
   }
