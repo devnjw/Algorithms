@@ -39,7 +39,7 @@ int main(){
     cin >> buildings[i].first >> buildings[i].second;
   }
 
-  sort(buildings, buildings + N);
+  sort(buildings, buildings + N, cmp);
 
   for(int i=0; i<N; ++i){
     for(int j=i+1; j<N; ++j){
