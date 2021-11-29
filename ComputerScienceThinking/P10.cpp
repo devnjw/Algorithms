@@ -1,50 +1,69 @@
 #include <iostream>
 #include <vector>
-#include <queue>
+#include <stack>
+#include <algorithm>
 
 using namespace std;
 
 int N;
-int start_chars[26];
-int end_chars[26];
-queue<string> words[26];
+string arr[1000];
+vector<pair<string, int> > words[26];
+stack<string> answer;
+
+bool DFS(int n, int depth){
+  if(depth==N)
+    return true;
+
+  string str;
+  for(int i=0; i<(int)words[n].size(); ++i){
+    if(words[n][i].second == 0){
+      words[n][i].second = 1;
+      str = words[n][i].first;
+      answer.push(str);
+
+      if(DFS(str[str.size()-1]-'a', depth+1))
+        return true;
+
+      answer.pop();
+      words[n][i].second = 0;
+    }
+  }
+
+  return false;
+}
 
 int main(){
   cin >> N;
 
   string tmp;
   for(int i=0; i<N; ++i){
-    cin >> tmp;
-    start_chars[tmp[0]-'a']++;
-    end_chars[tmp[tmp.size()-1]-'a']++;
-    words[tmp[0]-'a'].push(tmp);
+    cin >> arr[i];
   }
 
-  int st = -1, end = -1;
-  for(int i=0; i<26; ++i){
-    if(start_chars[i] > end_chars[i]){
-      if(st!=-1){
-        cout << 0;
-        return 0;
-      }
-      else
-        st = i;
-    }
-    else if(start_chars[i] < end_chars[i]){
-      if(end!=-1){
-        cout << 0;
-        return 0;
-      }
-      else
-        end = i;
-    }
+  sort(arr, arr+N);
+
+  for(int i=0; i<N; ++i){
+    words[arr[i][0]-'a'].push_back(make_pair(arr[i], 0));
   }
 
-  while(!words[st].empty()){
-    tmp = words[st].front();
-    words[st].pop();
-    cout << tmp << "\n";
-    st = tmp[tmp.size() - 1] - 'a';
+  int st;
+  for(st=0; st<26; ++st)
+    if(DFS(st, 0))
+      break;
+
+  if(st==26){
+    cout << 0;
+    return 0;
+  }
+
+  stack<string> temp_st;
+  while(!answer.empty()){
+    temp_st.push(answer.top());
+    answer.pop();
+  }
+  while(!temp_st.empty()){
+    cout << temp_st.top() << "\n";
+    temp_st.pop();
   }
 
   return 0;
