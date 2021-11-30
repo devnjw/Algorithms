@@ -8,23 +8,30 @@ using namespace std;
 int N;
 string arr[1000];
 vector<pair<string, int> > words[26];
-stack<string> answer;
+vector<string> answer;
 
-bool DFS(int n, int depth){
+int start_c_cnt[26];
+int end_c_cnt[26];
+
+bool DFS(int e, int n, int depth){
   if(depth==N)
     return true;
+  else if(end_c_cnt[e]==0)
+    return false;
 
   string str;
   for(int i=0; i<(int)words[n].size(); ++i){
     if(words[n][i].second == 0){
       words[n][i].second = 1;
       str = words[n][i].first;
-      answer.push(str);
+      answer.push_back(str);
+      end_c_cnt[str[str.size()-1]-'a']--;
 
-      if(DFS(str[str.size()-1]-'a', depth+1))
+      if(DFS(e, str[str.size()-1]-'a', depth+1))
         return true;
 
-      answer.pop();
+      end_c_cnt[str[str.size()-1]-'a']++;
+      answer.pop_back();
       words[n][i].second = 0;
     }
   }
@@ -35,9 +42,10 @@ bool DFS(int n, int depth){
 int main(){
   cin >> N;
 
-  string tmp;
   for(int i=0; i<N; ++i){
     cin >> arr[i];
+    start_c_cnt[arr[i][0]-'a']++;
+    end_c_cnt[arr[i][arr[i].size()-1]-'a']++;
   }
 
   sort(arr, arr+N);
@@ -46,25 +54,45 @@ int main(){
     words[arr[i][0]-'a'].push_back(make_pair(arr[i], 0));
   }
 
+  int s = -1, e = -1;
+  for(int i=0; i<26; ++i){
+    if(start_c_cnt[i] > end_c_cnt[i]){
+      if(s!=-1){
+        cout << 0;
+        return 0;
+      }
+      else
+        s = i;
+    }
+    else if(start_c_cnt[i] < end_c_cnt[i]){
+      if(e!=-1){
+        cout << 0;
+        return 0;
+      }
+      else
+        e = i;
+    }
+  }
+
   int st;
-  for(st=0; st<26; ++st)
-    if(DFS(st, 0))
+  for(st=0; st<26; ++st){
+    int result;
+    if(e==-1)
+      result = DFS(st, st, 0);
+    else
+      result = DFS(e, st, 0);
+
+    if(result)
       break;
+  }
 
   if(st==26){
     cout << 0;
     return 0;
   }
 
-  stack<string> temp_st;
-  while(!answer.empty()){
-    temp_st.push(answer.top());
-    answer.pop();
-  }
-  while(!temp_st.empty()){
-    cout << temp_st.top() << "\n";
-    temp_st.pop();
-  }
+  for(int i=0; i<(int)answer.size(); ++i)
+    cout << answer[i] << "\n";
 
   return 0;
 }
