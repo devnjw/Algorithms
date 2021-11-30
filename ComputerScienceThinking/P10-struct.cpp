@@ -6,6 +6,7 @@
 using namespace std;
 
 struct Word{
+  string word;
   char s;
   char e;
   int i;
@@ -14,7 +15,7 @@ struct Word{
 
 int N;
 string arr[1000];
-vector<pair<string, int> > words[26];
+vector<Word> words[26];
 stack<string> answer;
 
 bool DFS(int n, int depth){
@@ -23,8 +24,8 @@ bool DFS(int n, int depth){
 
   string str;
   for(int i=0; i<(int)words[n].size(); ++i){
-    if(words[n][i].second == 0){
-      words[n][i].second = 1;
+    if(words[n][i].used == 0){
+      words[n][i].used = 1;
       str = words[n][i].first;
       answer.push(str);
 
@@ -32,7 +33,7 @@ bool DFS(int n, int depth){
         return true;
 
       answer.pop();
-      words[n][i].second = 0;
+      words[n][i].used = 0;
     }
   }
 
