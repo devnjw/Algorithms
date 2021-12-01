@@ -74,19 +74,15 @@ int main(){
     }
   }
 
-  int st;
-  for(st=0; st<26; ++st){
-    int result;
-    if(e==-1)
-      result = DFS(st, st, 0);
-    else
-      result = DFS(e, st, 0);
-
-    if(result)
-      break;
+  int result;
+  if(e==-1){
+    result = DFS(arr[0][0]-'a', arr[0][0]-'a', 0);
+  }
+  else{
+    result = DFS(e, s, 0);
   }
 
-  if(st==26){
+  if(result == 0){
     cout << 0;
     return 0;
   }
