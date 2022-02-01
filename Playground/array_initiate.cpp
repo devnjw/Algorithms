@@ -14,6 +14,9 @@ int main(){
   int local_2d_arr[SIZE][SIZE];
   int local_2d_arr_filled[SIZE][SIZE];
 
+  printf("pointer 1: %p\n", global_2d_arr_filled);
+  printf("pointer 2: %p\n", &global_2d_arr_filled[0][0]);
+
   fill(global_2d_arr_filled[0], global_2d_arr_filled[0]+SIZE*SIZE, -1);
 
   printf("Global 1d arr: ");
